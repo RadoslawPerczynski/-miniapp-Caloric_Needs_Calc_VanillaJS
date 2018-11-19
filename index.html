@@ -8,13 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <style>
-      #loading, #results {
-        display: none;
-      }
-    </style>
-
-    <title>Loan calculator</title>
+    <title>Daily Caloric Needs (Basal Metabolic Rate BMR)</title>
   </head>
   <body class="bg-dark">
     <div class="container">
@@ -22,72 +16,89 @@
         <div class="col-md-6 mx-auto">
           <div class="card card-body text-center mt-5">
             <h1 class="heading display-5 pb-3">
-              Loan calculator
+              Daily Caloric Needs
             </h1>
-            <form id="loan-form">
-              <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
-                      </div>
-                  <input type="number" class="form-control" id="amount" placeholder="Loan amount">
+          
+            <form id="bmr-form">
+              <div class="form-group row">
+                <label for="age" class="col-sm-4 col-form-label">Age</label>
+                <div class="col-sm-8">                
+                  <input type="number" class="form-control" id="age" placeholder="Age" value="29">
                 </div>
               </div>
-              <div class="form-group">
-                  <div class="input-group">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text">%</span>
-                        </div>
-                    <input type="number" class="form-control" id="interest" placeholder="Interest">
+              <div class="form-group row">
+                    <label for="genderSelect" class="col-sm-4 col-form-label">Gender</label>
+                    <div class="col-sm-8">                
+                        <select class="form-control" id="genderSelect">
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                        </select>
+                    </div> 
+                </div>
+                <div class="form-group row">
+                    <label for="height" class="col-sm-4 col-form-label">Height [cm]: </label>
+                    <div class="col-sm-8">                
+                      <input type="number" class="form-control" id="height" placeholder="Height" value="185">
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="weight" class="col-sm-4 col-form-label">Weight [kg]: </label>
+                  <div class="col-sm-8">                
+                    <input type="number" class="form-control" id="weight" placeholder="Weight" value="99">
                   </div>
-                </div>
+              </div>
+              <div class="form-group row">
+                <label for="activitySelect" class="col-sm-4 col-form-label">Daily activity: </label>
+                <div class="col-sm-8">                         
+                    <select id="activitySelect" class="form-control">
+                      <option value="1">Basal Metabolic Rate (BMR)</option>
+                      <option value="1.2">Sedentary - little or no exercise</option>
+                      <option value="1.375" selected="">Lightly Active - exercise/sports 1-3 times/week</option>
+                      <option value="1.55">Moderately Active - exercise/sports 3-5 times/week</option>
+                      <option value="1.725">Very Active - hard exercise/sports 6-7 times/week</option>
+                      <option value="1.9">Extra Active - very hard exercise/sports or physical job</option>
+                    </select>
+                </div> 
+            </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" id="years" placeholder="Years to repay">
+                  <input type="submit" value="Check Your BMR" class="btn btn-dark btn-block">
                 </div>
-                <div class="form-group"><input type="submit" value="Calculate" class="btn btn-dark btn-block"></div>
             </form>
-            <!-- loader here -->
-            <div class="" id="loading"><img src="img/loader.gif" alt=""></div>
+
+              <!-- hint -->
+              <p class="text-success hint" style="display:none">Don't take yourself too seriously ;)</p>
+
+            <!-- loader -->
+            <div class="" id="loading" style="display: none;">
+              <img src="img/loader.gif" alt="loader" width="100" >
+            </div>
+
             <!-- results -->
-            <div id="results" class="pt-4">
+            <div id="results" class="pt-4" style="display: none;">
               <h5>Results</h5>
               <div class="form-group">
                   <div class="input-group">
                       <div class="input-group-prepend">
-                          <span class="input-group-text">Monthly payment</span>
+                          <span class="input-group-text">BMR</span>
                         </div>
-                    <input type="number" class="form-control" id="monthly-payment" disabled>
+                    <input type="number" class="form-control" id="bmr-result" disabled>
                   </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Total payment</span>
-                          </div>
-                      <input type="number" class="form-control" id="total-payment" disabled>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                      <div class="input-group">
-                          <div class="input-group-prepend">
-                              <span class="input-group-text">Total interest</span>
-                            </div>
-                        <input type="number" class="form-control" id="total-interest" disabled>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">CPM</span>
                       </div>
-                    </div>
+                  <input type="number" class="form-control" id="cpm-result" disabled>
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="" id="result-description"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
-
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
